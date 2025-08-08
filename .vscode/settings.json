@@ -1,0 +1,9 @@
+{
+  "C_Cpp.autoAddFileAssociations": false,
+  "[c]": {
+    "editor.tabSize": 2
+  },
+  "[cpp]": {
+    "editor.tabSize": 2
+  }
+}

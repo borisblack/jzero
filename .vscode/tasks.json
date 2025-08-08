@@ -1,0 +1,267 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build ch3/j0",
+            "detail": "Build j0 from chapter 3",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/src/ch3 && make j0",
+            "options": {
+              "cwd": "${workspaceFolder}/src/ch3"
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "build"
+            }
+        },
+        {
+            "label": "Run ch3/j0",
+            "detail": "Run j0 from chapter 3",
+            "type": "shell",
+            "command": "${workspaceFolder}/src/ch3/j0",
+            "options": {
+              "cwd": "${workspaceFolder}/src/ch3"
+            },
+            "args": [
+                "hello.java"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Build ch4/j0",
+            "detail": "Build j0 from chapter 4",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/src/ch4 && make j0",
+            "options": {
+              "cwd": "${workspaceFolder}/src/ch4"
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "build"
+            }
+        },
+        {
+            "label": "Run ch4/j0",
+            "detail": "Run j0 from chapter 4",
+            "type": "shell",
+            "command": "${workspaceFolder}/src/ch4/j0",
+            "options": {
+              "cwd": "${workspaceFolder}/src/ch4"
+            },
+            "args": [
+                "hello.java"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Build ch5/j0",
+            "detail": "Build j0 from chapter 5",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/src/ch5 && make j0",
+            "options": {
+              "cwd": "${workspaceFolder}/src/ch5"
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "build"
+            }
+        },
+        {
+            "label": "Run ch5/j0",
+            "detail": "Run j0 from chapter 5",
+            "type": "shell",
+            "command": "${workspaceFolder}/src/ch5/j0",
+            "options": {
+              "cwd": "${workspaceFolder}/src/ch5"
+            },
+            "args": [
+                "hello.java"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Build ch6/j0",
+            "detail": "Build j0 from chapter 6",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/src/ch6 && make j0",
+            "options": {
+              "cwd": "${workspaceFolder}/src/ch6"
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "build"
+            }
+        },
+        {
+            "label": "Run ch6/j0",
+            "detail": "Run j0 from chapter 6",
+            "type": "shell",
+            "command": "${workspaceFolder}/src/ch6/j0",
+            "options": {
+              "cwd": "${workspaceFolder}/src/ch6"
+            },
+            "args": [
+                "hello.java"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Build ch7/j0",
+            "detail": "Build j0 from chapter 7",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/src/ch7 && make j0",
+            "options": {
+              "cwd": "${workspaceFolder}/src/ch7"
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "build"
+            }
+        },
+        {
+            "label": "Run ch7/j0",
+            "detail": "Run j0 from chapter 7",
+            "type": "shell",
+            "command": "${workspaceFolder}/src/ch7/j0",
+            "options": {
+              "cwd": "${workspaceFolder}/src/ch7"
+            },
+            "args": [
+                "hello.java"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Build ch8/j0",
+            "detail": "Build j0 from chapter 8",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/src/ch8 && make j0",
+            "options": {
+              "cwd": "${workspaceFolder}/src/ch8"
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "build"
+            }
+        },
+        {
+            "label": "Run ch8/j0",
+            "detail": "Run j0 from chapter 8",
+            "type": "shell",
+            "command": "${workspaceFolder}/src/ch8/j0",
+            "options": {
+              "cwd": "${workspaceFolder}/src/ch8"
+            },
+            "args": [
+                "funtest.java"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Build ch9/j0",
+            "detail": "Build j0 from chapter 9",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/src/ch9 && make j0",
+            "options": {
+              "cwd": "${workspaceFolder}/src/ch9"
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "build"
+            }
+        },
+        {
+            "label": "Run ch9/j0",
+            "detail": "Run j0 from chapter 9",
+            "type": "shell",
+            "command": "${workspaceFolder}/src/ch9/j0",
+            "options": {
+              "cwd": "${workspaceFolder}/src/ch9"
+            },
+            "args": [
+                "hello.java"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Build ch11/j0x",
+            "detail": "Build j0x from chapter 11",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/src/ch11 && make j0x",
+            "options": {
+              "cwd": "${workspaceFolder}/src/ch11"
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "build"
+            }
+        },
+        {
+            "label": "Run ch11/j0x",
+            "detail": "Run j0x from chapter 11",
+            "type": "shell",
+            "command": "${workspaceFolder}/src/ch11/j0x",
+            "options": {
+              "cwd": "${workspaceFolder}/src/ch11"
+            },
+            "args": [
+                "hello.j0"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Build ch12/j0",
+            "detail": "Build j0 from chapter 12",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/src/ch12 && make j0",
+            "options": {
+              "cwd": "${workspaceFolder}/src/ch12"
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Run ch12/j0",
+            "detail": "Run j0 from chapter 12",
+            "type": "shell",
+            "command": "${workspaceFolder}/src/ch12/j0",
+            "options": {
+              "cwd": "${workspaceFolder}/src/ch12"
+            },
+            "args": [
+                "hello.java"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Build ch12/j0x",
+            "detail": "Build j0x from chapter 12",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/src/ch12 && make j0x",
+            "options": {
+              "cwd": "${workspaceFolder}/src/ch12"
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Run ch12/j0x",
+            "detail": "Run j0x from chapter 12",
+            "type": "shell",
+            "command": "${workspaceFolder}/src/ch12/j0x",
+            "options": {
+              "cwd": "${workspaceFolder}/src/ch12"
+            },
+            "args": [
+                "hello.j0"
+            ],
+            "problemMatcher": []
+        }
+    ]
+}
