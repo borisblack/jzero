@@ -12,6 +12,7 @@
 #include "j0.h"
 #include "serial.h"
 #include "byc.h"
+#include "x64.h"
 #include "util.h"
 
 using namespace std;
@@ -21,10 +22,12 @@ static int count;
 static char *yyfilename;
 static map<string, int> labelTable;
 static bool methodAddrPushed = false;
+static bool isNative = false;
 
+static char *genOutFilename(char *dest);
 static void fillBcode(list<Byc*> &bcode, vector<shared_ptr<Tac>> &icode);
 static Byc *bgen(int op, shared_ptr<Address> address);
-static void genBytecode(list<Byc*> &bcode);
+static void genBytecode(const char *filename, list<Byc*> &bcode);
 static int calculateFio();
 static char *rawString(char *dest, int i, int len);
 static uint writeStringArea(char *dest);
@@ -36,11 +39,31 @@ SymTab *global_st = NULL, *string_st = NULL;
 int main(int argc, char* argv[]) {
   print_pid();
 
+  int fnameIdx = 1;
   if (argc == 1) {
-    printf("usage: j0 [filename]\n");
+    fprintf(stderr, "usage: j0 [-x64] filename\n");
+    exit(1);
+  }
+  if (!strcmp("-x64", argv[1])) {
+      isNative = true;
+      fnameIdx++;
+      printf("Compiling %s to x64 .s format\n", argv[fnameIdx]);
+  }
+  else {
+      isNative = false;
+      printf("Compiling %s to .j0 format\n", argv[fnameIdx]);
   }
 
-  yyfilename = argv[1];
+  if (fnameIdx >= argc) {
+    fprintf(stderr, "usage: j0 [-x64] filename\n");
+    exit(1);
+  }
+
+  yyfilename = argv[fnameIdx];
+  size_t len = strlen(yyfilename);
+  if (len < 6 || strcmp(yyfilename+len-5, ".java"))
+    strcat(yyfilename, ".java");
+
   if(!(yyin = fopen(yyfilename, "r"))) {
     printf("cannot open file: %s\n", yyfilename);
     exit(1);
@@ -170,9 +193,30 @@ void gencode(Tree *root) {
   root->genTargets();
   root->genCode();
   // root->printIcode();
-  list<Byc*> bcode;
-  fillBcode(bcode, root->icode);
-  genBytecode(bcode);
+
+  char outfilename[strlen(yyfilename)];
+  genOutFilename(outfilename);
+  if (isNative) {
+    X64Generator generator;
+    generator.genCode(root->icode);
+    generator.writeCode(outfilename, yyfilename, string_st);
+  }
+  else {
+    list<Byc*> bcode;
+    fillBcode(bcode, root->icode);
+    genBytecode(outfilename, bcode);
+  }
+}
+
+static char *genOutFilename(char *dest) {
+  int len = strlen(yyfilename);
+  char outfilename[len - (isNative ? 2 : 1)]; // minus .java, plus .s (or .j0), plus 1
+  strncpy(outfilename, yyfilename, len-5);  // minus .java
+  outfilename[len-5] = '\0';
+  strcat(outfilename, isNative ? ".s" : ".j0");
+  strcpy(dest, outfilename);
+
+  return dest;
 }
 
 static void fillBcode(list<Byc*> &bcode, vector<shared_ptr<Tac>> &icode) {
@@ -269,7 +313,7 @@ static Byc *bgen(int op, shared_ptr<Address> address) {
   return b;
 }
 
-static void genBytecode(list<Byc*> &bcode) {
+static void genBytecode(const char *filename, list<Byc*> &bcode) {
   char code[800000];
   char *pCode = code;
   map<string, int>::iterator it;
@@ -277,11 +321,6 @@ static void genBytecode(list<Byc*> &bcode) {
   int entrypt;
   FILE *f;
   char tmpStr[25];
-  int len = strlen(yyfilename);
-  char outfilename[len-1]; // minus .java plus .j0 plus 1
-  strncpy(outfilename, yyfilename, len-5);  // minus .java
-  outfilename[len-5] = '\0';
-  strcat(outfilename, ".j0");
 
   memcpy(pCode,"Jzero!!\0", 8);               // word 0, magic word
   pCode += 8;
@@ -325,9 +364,9 @@ static void genBytecode(list<Byc*> &bcode) {
 
   pCode += writeInstructions(pCode, bcode);
 
-  f = fopen(outfilename, "wb");
+  f = fopen(filename, "wb");
   if (!f) {
-    fprintf(stderr, "cannot open file %s\n", outfilename);
+    fprintf(stderr, "cannot open file %s\n", filename);
     exit(1);
   }
   fwrite(code, pCode-code, 1, f);
