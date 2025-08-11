@@ -123,7 +123,9 @@ RegUse::RegUse(const char *reg, int offset) {
   loaded=dirty=false;
 }
 
-X64Generator::X64Generator() {}
+X64Generator::X64Generator(SymTab *strTab) {
+  this->strTab = strTab;
+}
 
 X64Generator::~X64Generator() {
   X64Instr *instr;
@@ -417,7 +419,7 @@ void X64Generator::genParm(int n, Address *addr) {
   }
 }
 
-void X64Generator::writeCode(const char *filename, const char *origFilename, SymTab *strTab) {
+void X64Generator::writeCode(const char *filename, const char *origFilename) {
   FILE *f = fopen(filename, "w");
   if (!f) {
     fprintf(stderr, "cannot open file %s for writing\n", filename);
@@ -448,7 +450,7 @@ void X64Generator::writeCode(const char *filename, const char *origFilename, Sym
   fprintf(f, "\t.text\n");
   fprintf(f, "\t.def\t__main;\t.scl\t2;\t.type\t32;\t.endef\n");
   
-  writeStrings(f, strTab);
+  writeStrings(f);
   writeInstrs(f);
 
   fprintf(f, "\t.ident\t\"j0: (Unicon) 0.1.0\"\n");
@@ -456,7 +458,7 @@ void X64Generator::writeCode(const char *filename, const char *origFilename, Sym
   fclose(f);
 }
 
-void X64Generator::writeStrings(FILE *f, SymTab *strTab) {
+void X64Generator::writeStrings(FILE *f) {
   map<string, SymTabEntry*>::iterator it;
   string s;
   int i = 0;

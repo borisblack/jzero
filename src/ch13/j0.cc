@@ -197,9 +197,9 @@ void gencode(Tree *root) {
   char outfilename[strlen(yyfilename)];
   genOutFilename(outfilename);
   if (isNative) {
-    X64Generator generator;
+    X64Generator generator(string_st);
     generator.genCode(root->icode);
-    generator.writeCode(outfilename, yyfilename, string_st);
+    generator.writeCode(outfilename, yyfilename);
   }
   else {
     list<Byc*> bcode;

@@ -62,6 +62,7 @@ class X64Generator {
     new RegUse("%r14", -88)
   };
   vector<X64Instr*> xcode;
+  SymTab *strTab;
   bool methodAddrPushed = false;
   X64Instr *xgen(const char *opt);
   X64Instr *xgen(const char *op, Address *src, Address *dst);
@@ -75,13 +76,13 @@ class X64Generator {
   X64Instr *loadReg(RegUse *reg);
   X64Instr *saveReg(RegUse *reg);
   void genParm(int n, Address *addr);
-  void writeStrings(FILE *f, SymTab *strTab);
+  void writeStrings(FILE *f);
   void writeInstrs(FILE *f);
 public:
-  X64Generator();
+  X64Generator(SymTab *strTab);
   ~X64Generator();
   void genCode(vector<shared_ptr<Tac>> icode);
-  void writeCode(const char *filename, const char *origFilename, SymTab *strTab);
+  void writeCode(const char *filename, const char *origFilename);
 };
 
 #endif /* X64_H */
