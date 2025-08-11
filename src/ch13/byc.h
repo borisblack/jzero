@@ -58,13 +58,13 @@ class Byc {
   void addr(Address *address);
   const char *nameof();
   char *addrof(char *dest);
-  public:
-    int op, opreg;
-    long opnd;
-    Byc(int op, Address *address);
-    void print(FILE *f);
-    void printb(FILE *f);
-    uint printb(char *dest);
+public:
+  int op, opreg;
+  long opnd;
+  Byc(int op, Address *address);
+  void print(FILE *f);
+  void printb(FILE *f);
+  uint printb(char *dest);
 };
 
 #endif /* BYC_H */

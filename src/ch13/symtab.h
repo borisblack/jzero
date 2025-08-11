@@ -18,33 +18,33 @@ enum SymTabScope {
 };
 
 class SymTabEntry {
-  public:
-    const char *sym;
-    bool isConst;
-    SymTab *parent_st;
-    SymTab *st;
-    shared_ptr<TypeInfo> typ;
-    shared_ptr<Address> addr;
-    SymTabEntry(const char *sym, bool isConst, SymTab *parent_st, SymTab *st, shared_ptr<TypeInfo> typ, shared_ptr<Address> addr);
-    SymTabEntry(const char *sym, bool isConst, SymTab *parent_st) : SymTabEntry(sym, isConst, parent_st, NULL, NULL, NULL) {}
+public:
+  const char *sym;
+  bool isConst;
+  SymTab *parent_st;
+  SymTab *st;
+  shared_ptr<TypeInfo> typ;
+  shared_ptr<Address> addr;
+  SymTabEntry(const char *sym, bool isConst, SymTab *parent_st, SymTab *st, shared_ptr<TypeInfo> typ, shared_ptr<Address> addr);
+  SymTabEntry(const char *sym, bool isConst, SymTab *parent_st) : SymTabEntry(sym, isConst, parent_st, NULL, NULL, NULL) {}
 };
 
 class SymTab {
   const char *scopeName();
-  public:
-    SymTabScope scope;
-    SymTab *parent;
-    map<string, SymTabEntry*> t;
-    uint count;
-    SymTab(SymTabScope scope) : SymTab(scope, NULL) {}
-    SymTab(SymTabScope scope, SymTab *parent);
-    ~SymTab();
-    void insertEntry(const char *sym, bool isConst, SymTab *sub, shared_ptr<TypeInfo> typ);
-    SymTabEntry *lookupEntry(const char *sym);
-    size_t size();
-    shared_ptr<ClassType> mkCls(char *name);
-    shared_ptr<Address> genLocal();
-    void print(int level);
+public:
+  SymTabScope scope;
+  SymTab *parent;
+  map<string, SymTabEntry*> t;
+  uint count;
+  SymTab(SymTabScope scope) : SymTab(scope, NULL) {}
+  SymTab(SymTabScope scope, SymTab *parent);
+  ~SymTab();
+  void insertEntry(const char *sym, bool isConst, SymTab *sub, shared_ptr<TypeInfo> typ);
+  SymTabEntry *lookupEntry(const char *sym);
+  size_t size();
+  shared_ptr<ClassType> mkCls(char *name);
+  shared_ptr<Address> genLocal();
+  void print(int level);
 };
 
 #endif /* SYMTAB_H */

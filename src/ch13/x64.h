@@ -17,34 +17,34 @@ class X64Loc {
     char *sval;
   } offset;
   int mode;
-  public:
-    X64Loc(const char *reg);
-    X64Loc(int offset);
-    X64Loc(const char *reg, int offset);
-    X64Loc(const char *reg, const char *offset);
-    ~X64Loc();
-    // X64loc::X64loc(Address *addr);
-    char *str(char *dest);
+public:
+  X64Loc(const char *reg);
+  X64Loc(int offset);
+  X64Loc(const char *reg, int offset);
+  X64Loc(const char *reg, const char *offset);
+  ~X64Loc();
+  // X64loc::X64loc(Address *addr);
+  char *str(char *dest);
 };
 
 class X64Instr {
   X64Loc *opnd1 = nullptr, *opnd2 = nullptr;
-  public:
-    char *op;
-    X64Instr(const char *op, X64Loc *src, X64Loc *dst);
-    X64Instr(const char *op, X64Loc *opnd) : X64Instr(op, opnd, nullptr) {}
-    X64Instr(const char *op) : X64Instr(op, nullptr, nullptr) {}
-    ~X64Instr();
-    void print(FILE *f);
-    void print();
+public:
+  char *op;
+  X64Instr(const char *op, X64Loc *src, X64Loc *dst);
+  X64Instr(const char *op, X64Loc *opnd) : X64Instr(op, opnd, nullptr) {}
+  X64Instr(const char *op) : X64Instr(op, nullptr, nullptr) {}
+  ~X64Instr();
+  void print(FILE *f);
+  void print();
 };
 
 class RegUse {
-  public:
-    int offset;
-    const char *reg;
-    bool loaded, dirty;
-    RegUse(const char *reg, int offset);
+public:
+  int offset;
+  const char *reg;
+  bool loaded, dirty;
+  RegUse(const char *reg, int offset);
 };
 
 class X64Generator {
@@ -77,11 +77,11 @@ class X64Generator {
   void genParm(int n, Address *addr);
   void writeStrings(FILE *f, SymTab *strTab);
   void writeInstrs(FILE *f);
-  public:
-    X64Generator();
-    ~X64Generator();
-    void genCode(vector<shared_ptr<Tac>> icode);
-    void writeCode(const char *filename, const char *origFilename, SymTab *strTab);
+public:
+  X64Generator();
+  ~X64Generator();
+  void genCode(vector<shared_ptr<Tac>> icode);
+  void writeCode(const char *filename, const char *origFilename, SymTab *strTab);
 };
 
 #endif /* X64_H */
