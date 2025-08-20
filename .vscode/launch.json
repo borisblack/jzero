@@ -2,21 +2,6 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "ch9/j0.exe (Attach)",
-            "type": "cppdbg",
-            "request": "attach",
-            "program": "${workspaceFolder}/src/ch9/j0.exe",
-            "processId": "${command:pickProcess}",
-            "MIMode": "gdb",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
-            ]
-        },
-        {
             "name": "ch12/j0 (Attach)",
             "type": "cppdbg",
             "request": "attach",

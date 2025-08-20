@@ -31,15 +31,15 @@ j0x: $(J0X_HEADERS) $(J0X_SRC)
 j0x.exe: $(J0X_HEADERS) $(J0X_SRC)
 	$(CC) $(INCLUDE_PATHS) /Fe:$@ $(J0X_SRC)
 
-bc: j0.exe
-	./j0 hello.java
-	./j0x hello.j0
+bc: j0.exe j0x.exe
+	j0 hello.java
+	j0x hello.j0
 
 x64: j0.exe
-	./j0 -x64 hello.java
+	j0 -x64 hello.java
 	as -o hello.o hello.s
 	gcc -o hello.exe hello.o
-	./hello
+	hello
 
 hi.exe: hi.h hi.cc
 	$(CC) /Fe:$@ ../util/*.c hi.cc
