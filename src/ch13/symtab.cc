@@ -108,7 +108,7 @@ void SymTab::print(int level) {
   for(int i=0; i<level; i++)
     printf(" ");
 
-  printf("%s - %ld symbols\n", scopeName(), t.size());
+  printf("%s - %llu symbols\n", scopeName(), t.size());
 
   for (it = t.begin(); it != t.end(); it++) {
     for(int i=0; i<level; i++)

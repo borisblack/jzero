@@ -2,6 +2,21 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "ch9/j0.exe (Attach)",
+            "type": "cppdbg",
+            "request": "attach",
+            "program": "${workspaceFolder}/src/ch9/j0.exe",
+            "processId": "${command:pickProcess}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
             "name": "ch12/j0 (Attach)",
             "type": "cppdbg",
             "request": "attach",
@@ -30,6 +45,60 @@
                     "ignoreFailures": true
                 }
             ]
+        },
+        {
+            "name": "ch13/j0 (Attach)",
+            "type": "cppdbg",
+            "request": "attach",
+            "program": "${workspaceFolder}/src/ch13/j0.exe",
+            "processId": "${command:pickProcess}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "ch13/j0x (Attach)",
+            "type": "cppdbg",
+            "request": "attach",
+            "program": "${workspaceFolder}/src/ch13/j0x",
+            "processId": "${command:pickProcess}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "ch13/j0.exe",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/ch13/j0.exe",
+            "args": ["hello.java"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/src/ch13",
+            "environment": [],
+            "externalConsole": false,
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "ch13/hi.exe",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/ch13/hi.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/src/ch13",
+            "environment": [],
+            "externalConsole": false,
+            "console": "integratedTerminal"
         }
     ]
 }

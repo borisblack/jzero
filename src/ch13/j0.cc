@@ -13,12 +13,11 @@
 #include "serial.h"
 #include "byc.h"
 #include "x64.h"
-#include "util.h"
 
 using namespace std;
 
 static int yycolno;
-static int count;
+static int gCount;
 static char *yyfilename;
 static map<string, int> labelTable;
 static bool methodAddrPushed = false;
@@ -33,6 +32,8 @@ static char *rawString(char *dest, int i, int len);
 static uint writeStringArea(char *dest);
 static uint writeGlobalArea(char *dest);
 static uint writeInstructions(char *dest, list<Byc*> &bcode);
+
+extern "C" void print_pid();
 
 SymTab *global_st = NULL, *string_st = NULL;
 
@@ -71,7 +72,7 @@ int main(int argc, char* argv[]) {
 
   yylval.t = NULL;
   yylineno = yycolno = 1;
-  count = 0;
+  gCount = 0;
   int i = yyparse();
 
   delete yylval.t;
@@ -79,7 +80,7 @@ int main(int argc, char* argv[]) {
   fclose(yyin);
 
   if (i == 0)
-    printf("no errors, %d tokens parsed\n", count);
+    printf("no errors, %d tokens parsed\n", gCount);
 }
 
 void yyerror(const char *s) {
@@ -98,7 +99,7 @@ int scan(int cat) {
 
   yylval.t = tree;
   yycolno += strlen(yytext);
-  count++;
+  gCount++;
 
   return cat;
 }
@@ -152,14 +153,17 @@ void calcType(Tree *tree) {
 void printRoot(Tree *root) {
   // tree_Print(root, 0);
 
-  char graphFilename[strlen(yyfilename) + 5];
+  char *graphFilename = new char[strlen(yyfilename) + 5];
   sprintf(graphFilename, "%s.dot", yyfilename);
 
   FILE *f;
   if(!(f = fopen(graphFilename, "w"))) {
     printf("cannot open graph file: %s\n", graphFilename);
+    delete [] graphFilename;
     exit(1);
   }
+  delete [] graphFilename;
+  
   fprintf(f, "digraph {\n");
   root->printGraph(f);
   fprintf(f, "}\n");
@@ -194,7 +198,7 @@ void gencode(Tree *root) {
   root->genCode();
   // root->printIcode();
 
-  char outfilename[strlen(yyfilename)];
+  char *outfilename = new char[strlen(yyfilename)];
   genOutFilename(outfilename);
   if (isNative) {
     X64Generator generator(string_st);
@@ -206,15 +210,17 @@ void gencode(Tree *root) {
     fillBcode(bcode, root->icode);
     genBytecode(outfilename, bcode);
   }
+  delete [] outfilename;
 }
 
 static char *genOutFilename(char *dest) {
   int len = strlen(yyfilename);
-  char outfilename[len - (isNative ? 2 : 1)]; // minus .java, plus .s (or .j0), plus 1
+  char *outfilename = new char[len - (isNative ? 2 : 1)]; // minus .java, plus .s (or .j0), plus 1
   strncpy(outfilename, yyfilename, len-5);  // minus .java
   outfilename[len-5] = '\0';
   strcat(outfilename, isNative ? ".s" : ".j0");
   strcpy(dest, outfilename);
+  delete [] outfilename;
 
   return dest;
 }

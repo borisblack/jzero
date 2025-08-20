@@ -1,4 +1,7 @@
+#ifndef YY_NO_UNISTD_H
 #include <unistd.h>
+#endif
+
 #include <stdlib.h>
 #include <string.h>
 #include "util.h"
@@ -64,12 +67,13 @@ long fread_int(FILE *file, u_int count) {
   if (count == 0)
     return 0;
 
-  u_char buffer[count]; // buffer for intermediate data
+  u_char *buffer = malloc(count); // buffer for intermediate data
   fread(&buffer, 1, count, file);
   unsigned int res = buffer[count-1]; // last byte
   for (int i = count-2; i >= 0; --i) {
     res |= (buffer[i] << 8);
   }
+  free(buffer);
   
   return res;
 }
@@ -201,7 +205,7 @@ char *str_replace(char *src, char *from, char *to) {
 
   // Replace each match
   const int targetLen = srcLen - fromLen * nMatches + toLen * nMatches;
-  char target[targetLen + 1];
+  char *target = malloc(targetLen + 1);
   char *pMatchPrefix = src;
   char *pTarget = target;
   pMachStart = src;
@@ -219,5 +223,5 @@ char *str_replace(char *src, char *from, char *to) {
   strcpy(pTarget, pMatchPrefix);
   target[targetLen] = '\0';
   
-  return strdup(target);
+  return target;
 }

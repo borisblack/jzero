@@ -1,8 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "util.h"
 #include "j0machine.h"
+
+extern "C" void print_pid();
 
 int main(int argc, char *argv[]) {
   print_pid();
@@ -13,7 +14,7 @@ int main(int argc, char *argv[]) {
   }
 
   size_t len = strlen(argv[1]);
-  char filename[len+4];
+  char *filename = new char[len+4];
   strcpy(filename, argv[1]);
   if (len < 4 || strcmp(filename+len-3, ".j0"))
     strcat(filename, ".j0");
@@ -21,4 +22,6 @@ int main(int argc, char *argv[]) {
   j0m_Init(filename);
   j0m_Interp();
   j0m_Dispose();
+
+  delete [] filename;
 }

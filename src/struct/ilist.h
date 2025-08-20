@@ -144,6 +144,11 @@
 	do { _Static_assert(condition, errmessage); } while(0)
 #define StaticAssertExpr(condition, errmessage) \
 	({ StaticAssertStmt(condition, errmessage); true; })
+#elif defined HAVE__STATIC_ASSERT_CXX
+#define StaticAssertStmt(condition, errmessage) \
+	do { static_assert(condition, errmessage); } while(0)
+#define StaticAssertExpr(condition, errmessage) \
+	({ StaticAssertStmt(condition, errmessage); true; })
 #else							/* !HAVE__STATIC_ASSERT */
 #define StaticAssertStmt(condition, errmessage) \
 	((void) sizeof(struct { int static_assert_failure : (condition) ? 1 : -1; }))

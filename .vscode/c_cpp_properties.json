@@ -3,17 +3,6 @@
         {
             "name": "C/C++/Linux",
             "includePath": [
-                "${workspaceFolder}/src",
-				"${workspaceFolder}/src/ch3",
-				"${workspaceFolder}/src/ch4",
-				"${workspaceFolder}/src/ch5",
-				"${workspaceFolder}/src/ch6",
-				"${workspaceFolder}/src/ch7",
-				"${workspaceFolder}/src/ch8",
-				"${workspaceFolder}/src/ch9",
-				"${workspaceFolder}/src/ch11",
-				"${workspaceFolder}/src/ch12",
-				"${workspaceFolder}/src/ch13",
                 "${workspaceFolder}/src/struct",
                 "${workspaceFolder}/src/util"
             ],

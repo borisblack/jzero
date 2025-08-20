@@ -532,16 +532,18 @@ void Tree::printLeaf(FILE *f) {
   printBranch(f);
   fprintf(f, "N%d [shape=box style=dotted label=\" %s \\n ", id, s);
 
-  char escapedText[strlen(tok->text)+3];
+  char *escapedText = new char[strlen(tok->text)+3];
   fprintf(f, "text = %s \\l lineno = %d \\l\"];\n", escape(escapedText, tok->text), tok->lineno);
+  delete [] escapedText;
 }
 
 void Tree::printBranch(FILE *f) {
   fprintf(f, "N%d ", id);
 
   int prettyNameLen = tok ? (strlen(tok->text)+10) : (strlen(sym)+3);
-  char prettyName[prettyNameLen];
+  char *prettyName = new char[prettyNameLen];
   fprintf(f, "[shape=box label=\"%s", prettyPrintName(prettyName));
+  delete [] prettyName;
 
   if (tok)
     fprintf(f, "struct token* leaf %d", tok->id);
@@ -551,8 +553,9 @@ void Tree::printBranch(FILE *f) {
 
 char *Tree::prettyPrintName(char *dest) {
   if (tok) {
-    char escapedText[strlen(tok->text)+3];
+    char *escapedText = new char[strlen(tok->text)+3];
     sprintf(dest, "%s:%d", escape(escapedText, tok->text), tok->cat);
+    delete [] escapedText;
   } else {
     sprintf(dest, "%s#%d", sym, rule%10);
   }

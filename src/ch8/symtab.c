@@ -43,7 +43,7 @@ SymTab *symtab_Create(SymTabScope scope, SymTab *parent) {
   return symTab;
 }
 
-void symtab_InsertEntry(SymTab *symTab, const char *sym, bool isConst, SymTab *sub, TypeInfo *typ) {
+void symtab_InsertEntry(SymTab *symTab, char *sym, bool isConst, SymTab *sub, TypeInfo *typ) {
   SymTabEntry newEntry = {
     .sym = sym,
     .isConst = isConst,

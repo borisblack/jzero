@@ -2,6 +2,10 @@
 %{
 #include "j0gram.tab.h"
 #include "j0.h"
+
+#ifdef YY_NO_UNISTD_H
+#include <io.h>
+#endif
 %}
 
 ID ([a-zA-Z_][a-zA-Z0-9_]*)

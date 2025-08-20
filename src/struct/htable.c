@@ -28,7 +28,7 @@ _htable_resize(HTable* tbl)
 	{
 		new_size = tbl->size * 2;
 		new_mask = new_size - 1;
-		new_items = tbl->allocfunc(sizeof(HTableNode*) * new_size, tbl->arg);
+		new_items = (HTableNode**)tbl->allocfunc(sizeof(HTableNode*) * new_size, tbl->arg);
 		if(new_items == NULL)
 			return;
 
@@ -67,7 +67,7 @@ _htable_resize(HTable* tbl)
 	{
 		new_size = tbl->size / 2;
 		new_mask = new_size - 1;
-		new_items = tbl->allocfunc(sizeof(HTableNode*) * new_size, tbl->arg);
+		new_items = (HTableNode**)tbl->allocfunc(sizeof(HTableNode*) * new_size, tbl->arg);
 		if(new_items == NULL)
 			return;
 
@@ -226,7 +226,7 @@ htable_insert(HTable* tbl, HTableNode* node, bool* isNewNode)
 	}
 
 	/* key is not used yet, add new node */
-	item = tbl->allocfunc(tbl->node_size, tbl->arg);
+	item = (HTableNode*)tbl->allocfunc(tbl->node_size, tbl->arg);
 	if(item == NULL)
 		return;
 
