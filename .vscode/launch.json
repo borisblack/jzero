@@ -32,11 +32,13 @@
             ]
         },
         {
-            "name": "ch13/j0 (Attach)",
+            "name": "Launch ch13/j0 (bytecode)",
             "type": "cppdbg",
-            "request": "attach",
-            "program": "${workspaceFolder}/src/ch13/j0.exe",
-            "processId": "${command:pickProcess}",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/ch13/build/j0",
+            "args": ["../hello.java"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/src/ch13/build",
             "MIMode": "gdb",
             "setupCommands": [
                 {
@@ -44,14 +46,17 @@
                     "text": "-enable-pretty-printing",
                     "ignoreFailures": true
                 }
-            ]
+            ],
+            "preLaunchTask": "Build ch13/j0"
         },
         {
-            "name": "ch13/j0x (Attach)",
+            "name": "Launch ch13/j0 (x64)",
             "type": "cppdbg",
-            "request": "attach",
-            "program": "${workspaceFolder}/src/ch13/j0x",
-            "processId": "${command:pickProcess}",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/ch13/build/j0",
+            "args": ["-x64", "../hello.java"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/src/ch13/build",
             "MIMode": "gdb",
             "setupCommands": [
                 {
@@ -59,31 +64,64 @@
                     "text": "-enable-pretty-printing",
                     "ignoreFailures": true
                 }
-            ]
+            ],
+            "preLaunchTask": "Build ch13/j0"
         },
         {
-            "name": "ch13/j0.exe",
+            "name": "Launch ch13/j0x",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/ch13/build/j0x",
+            "args": ["../hello.j0"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/src/ch13/build",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "Build ch13/j0"
+        },
+        {
+            "name": "Launch ch13/j0.exe (bytecode)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "j0.exe",
+            "args": ["../hello.java"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/src/ch13/build",
+            "environment": [],
+            "console": "integratedTerminal",
+            "preLaunchTask": "Build ch13/j0.exe"
+        },
+        {
+            "name": "Launch ch13/j0.exe (x64)",
             "type": "cppvsdbg",
             "request": "launch",
             "program": "${workspaceFolder}/src/ch13/j0.exe",
-            "args": ["hello.java"],
+            "args": ["-x64", "../hello.java"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/src/ch13",
             "environment": [],
             "externalConsole": false,
-            "console": "integratedTerminal"
+            "console": "integratedTerminal",
+            "preLaunchTask": "Build ch13/j0.exe"
         },
         {
-            "name": "ch13/hi.exe",
+            "name": "Launch ch13/j0x.exe",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/src/ch13/hi.exe",
-            "args": [],
+            "program": "${workspaceFolder}/src/ch13/j0x.exe",
+            "args": ["../hello.j0"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/src/ch13",
             "environment": [],
             "externalConsole": false,
-            "console": "integratedTerminal"
+            "console": "integratedTerminal",
+            "preLaunchTask": "Build ch13/j0.exe"
         }
     ]
 }

@@ -1,17 +1,13 @@
 {
     "configurations": [
         {
-            "name": "C/C++/Linux",
+            "name": "C/C++",
             "includePath": [
                 "${workspaceFolder}/src/struct",
                 "${workspaceFolder}/src/util"
             ],
-            "defines": [
-                "_GNU_SOURCE"
-            ],
-            "cStandard": "gnu99",
-            "cppStandard": "gnu++11",
-            "intelliSenseMode": "gcc-x64"
+            "cStandard": "c17",
+            "cppStandard": "c++17"
         }
     ],
     "version": 4

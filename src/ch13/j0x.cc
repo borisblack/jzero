@@ -3,11 +3,7 @@
 #include <string.h>
 #include "j0machine.h"
 
-extern "C" void print_pid();
-
 int main(int argc, char *argv[]) {
-  print_pid();
-
   if (argc < 1) {
     printf("usage: j0x file[.j0]\n");
     exit(1);

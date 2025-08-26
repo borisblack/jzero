@@ -1,7 +1,8 @@
 FROM ubuntu:22.04
 
 # Update and install
-RUN apt-get update -y && DEBIAN_FRONTEND=noninteractive apt-get install -y sudo locales vim mc build-essential libicu-dev gdb pkg-config git libreadline-dev zlib1g-dev flex bison graphviz
+RUN apt-get update -y && DEBIAN_FRONTEND=noninteractive apt-get install -y sudo locales vim mc build-essential \
+    libicu-dev gdb pkg-config git libreadline-dev zlib1g-dev flex bison graphviz cmake ninja-build
 
 # Set locale
 ENV LANGUAGE=en_US.UTF-8

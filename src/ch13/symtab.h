@@ -4,7 +4,7 @@
 #include <string>
 #include <map>
 #include <memory>
-#include <c.h>
+#include "c.h"
 #include "typeinfo.h"
 #include "tac.h"
 

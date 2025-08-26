@@ -1,5 +1,17 @@
 {
     "version": "2.0.0",
+    // "windows": {
+    //     "options": {
+    //         "shell": {
+    //             "executable": "cmd.exe",
+    //             "args": [
+    //                 "/C",
+    //                 "C:/\"Program Files\"/\"Microsoft Visual Studio\"/2022/Community/Common7/Tools/VsDevCmd.bat",
+    //                 "&&"
+    //             ]
+    //         }
+    //     }
+    // },
     "tasks": [
         {
             "label": "Build ch3/j0",
@@ -210,12 +222,12 @@
             "problemMatcher": []
         },
         {
-            "label": "Build ch12/j0",
-            "detail": "Build j0 from chapter 12",
+            "label": "Build ch13/j0",
+            "detail": "Build j0 from chapter 13",
             "type": "shell",
-            "command": "cd ${workspaceFolder}/src/ch12 && make j0",
+            "command": "./build.sh",
             "options": {
-              "cwd": "${workspaceFolder}/src/ch12"
+              "cwd": "${workspaceFolder}/src/ch13"
             },
             "problemMatcher": [],
             "group": {
@@ -224,44 +236,19 @@
             }
         },
         {
-            "label": "Run ch12/j0",
-            "detail": "Run j0 from chapter 12",
+            "label": "Build ch13/j0.exe",
+            "detail": "Build j0.exe from chapter 13",
             "type": "shell",
-            "command": "${workspaceFolder}/src/ch12/j0",
+            "command": "./build.ps1",
+            "args": [],
             "options": {
-              "cwd": "${workspaceFolder}/src/ch12"
-            },
-            "args": [
-                "hello.java"
-            ],
-            "problemMatcher": []
-        },
-        {
-            "label": "Build ch12/j0x",
-            "detail": "Build j0x from chapter 12",
-            "type": "shell",
-            "command": "cd ${workspaceFolder}/src/ch12 && make j0x",
-            "options": {
-              "cwd": "${workspaceFolder}/src/ch12"
+              "cwd": "${workspaceFolder}/src/ch13"
             },
             "problemMatcher": [],
             "group": {
                 "kind": "build",
                 "isDefault": true
             }
-        },
-        {
-            "label": "Run ch12/j0x",
-            "detail": "Run j0x from chapter 12",
-            "type": "shell",
-            "command": "${workspaceFolder}/src/ch12/j0x",
-            "options": {
-              "cwd": "${workspaceFolder}/src/ch12"
-            },
-            "args": [
-                "hello.j0"
-            ],
-            "problemMatcher": []
         }
     ]
 }

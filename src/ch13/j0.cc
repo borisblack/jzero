@@ -33,13 +33,9 @@ static uint writeStringArea(char *dest);
 static uint writeGlobalArea(char *dest);
 static uint writeInstructions(char *dest, list<Byc*> &bcode);
 
-extern "C" void print_pid();
-
 SymTab *global_st = NULL, *string_st = NULL;
 
 int main(int argc, char* argv[]) {
-  print_pid();
-
   int fnameIdx = 1;
   if (argc == 1) {
     fprintf(stderr, "usage: j0 [-x64] filename\n");
@@ -395,10 +391,9 @@ static char *rawString(char *dest, int i, int len) {
 
 static uint writeStringArea(char *dest) {
   char *pCode = dest;
-  map<string, SymTabEntry*>::iterator it;
   string s;
-  for (it = string_st->t.begin(); it != string_st->t.end(); it++) {
-    s = it->first;
+  for (pair<const string, SymTabEntry*> &pair : string_st->t) {
+    s = pair.first;
     // should fully-binarize (de-escape) string here
     // for now, just strip double quotes, replace with NULs
     s = s.substr(1, s.length()-2) + "\0\0";
