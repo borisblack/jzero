@@ -3,6 +3,8 @@
 #include <string.h>
 #include "symtab.h"
 
+using namespace std;
+
 SymTabEntry::SymTabEntry(const char *sym, bool isConst, SymTab *parent_st, SymTab *st, shared_ptr<TypeInfo> typ, shared_ptr<Address> addr) {
   this->sym = sym;
   this->isConst = isConst;

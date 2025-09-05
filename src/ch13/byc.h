@@ -6,8 +6,6 @@
 #include <stdio.h>
 #include "tac.h"
 
-using namespace std;
-
 enum Op {
   HALT = 1,
   NOOP = 2,
@@ -52,7 +50,7 @@ enum Region {
 };
 
 class Byc {
-  static map<int, string> ops;
+  static std::map<int, std::string> ops;
   static bool isOpsInit;
   static void initOps();
   void addr(Address *address);

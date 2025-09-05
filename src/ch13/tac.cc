@@ -56,7 +56,7 @@ void Address::print() {
   }
 }
 
-Tac::Tac(const char *op, shared_ptr<Address> op1, shared_ptr<Address> op2, shared_ptr<Address> op3) {
+Tac::Tac(const char *op, std::shared_ptr<Address> op1, std::shared_ptr<Address> op2, std::shared_ptr<Address> op3) {
   this->op = op;
   this->op1 = op1;
   this->op2 = op2;

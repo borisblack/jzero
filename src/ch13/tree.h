@@ -8,8 +8,6 @@
 #include "typeinfo.h"
 #include "tac.h"
 
-using namespace std;
-
 class Token {
   public:
     int id;
@@ -17,12 +15,12 @@ class Token {
     char *text;
     int lineno;
     int colno;
-    shared_ptr<TypeInfo> typ;
+    std::shared_ptr<TypeInfo> typ;
 
     Token(int cat, const char *text, int lineno, int colno);
     ~Token();
     const char *name();
-    shared_ptr<TypeInfo> catType();
+    std::shared_ptr<TypeInfo> catType();
 };
 
 class Tree {
@@ -35,19 +33,19 @@ public:
   Tree **kids = NULL;
   bool isConst = false;
   SymTab *symTab = NULL;
-  shared_ptr<TypeInfo> typ;
+  std::shared_ptr<TypeInfo> typ;
   int ncode = 0;
-  vector<shared_ptr<Tac>> icode;
-  shared_ptr<Address> addr = NULL;
-  shared_ptr<Address> first = NULL;
-  shared_ptr<Address> follow = NULL;
-  shared_ptr<Address> onTrue = NULL;
-  shared_ptr<Address> onFalse = NULL;
+  std::vector<std::shared_ptr<Tac>> icode;
+  std::shared_ptr<Address> addr = NULL;
+  std::shared_ptr<Address> first = NULL;
+  std::shared_ptr<Address> follow = NULL;
+  std::shared_ptr<Address> onTrue = NULL;
+  std::shared_ptr<Address> onFalse = NULL;
 
   Tree(const char *sym, int rule, Token *tok);
   Tree(const char *sym, int rule, int nkids, Tree **kids);
   ~Tree();
-  shared_ptr<TypeInfo> tokenType();
+  std::shared_ptr<TypeInfo> tokenType();
   void print(int level);
   void printGraph(FILE *f);
   void calcIsConst();
@@ -55,7 +53,7 @@ public:
   void populateSymTables();
   void checkSymTables();
   void calcType();
-  void assignType(shared_ptr<TypeInfo> typeInfo);
+  void assignType(std::shared_ptr<TypeInfo> typeInfo);
   void mkCls();
   void checkType(bool inCodeBlock);
   void genFirst();
@@ -71,13 +69,13 @@ private:
   void checkCodeblocks();
   void checkBlock();
   bool checkKids(bool inCodeBlock);
-  shared_ptr<TypeInfo> checkTypes(shared_ptr<TypeInfo> op1, shared_ptr<TypeInfo> op2);
+  std::shared_ptr<TypeInfo> checkTypes(std::shared_ptr<TypeInfo> op1, std::shared_ptr<TypeInfo> op2);
   const char *getOp();
   Tree *findToken();
-  shared_ptr<TypeInfo> dequalify();
-  vector<shared_ptr<TypeInfo>> *mksig();
+  std::shared_ptr<TypeInfo> dequalify();
+  std::vector<std::shared_ptr<TypeInfo>> *mksig();
   void cksig(MethodType *sig);
-  shared_ptr<Address> genLabel();
+  std::shared_ptr<Address> genLabel();
   void genClassDecl();
   void genAddExpr();
   void genMulExpr();
@@ -89,10 +87,10 @@ private:
   void genMethodDecl();
   void genQualifiedName();
   void genToken();
-  shared_ptr<Address> genLocal();
-  void addCode(const char *op, shared_ptr<Address> addr1, shared_ptr<Address> addr2, shared_ptr<Address> addr3);
-  void addCode(const char *op, shared_ptr<Address> addr1, shared_ptr<Address> addr2);
-  void addCode(const char *op, shared_ptr<Address> addr1);
+  std::shared_ptr<Address> genLocal();
+  void addCode(const char *op, std::shared_ptr<Address> addr1, std::shared_ptr<Address> addr2, std::shared_ptr<Address> addr3);
+  void addCode(const char *op, std::shared_ptr<Address> addr1, std::shared_ptr<Address> addr2);
+  void addCode(const char *op, std::shared_ptr<Address> addr1);
   void addCode(const char *op);
   void copyIcodeFrom(Tree *src);
 };

@@ -35,8 +35,8 @@
    especially those whose name start with YY_ or yy_.  They are
    private implementation details that can be changed or removed.  */
 
-#ifndef YY_YY_WORKSPACES_JZERO_SRC_CH13_J0GRAM_TAB_H_INCLUDED
-# define YY_YY_WORKSPACES_JZERO_SRC_CH13_J0GRAM_TAB_H_INCLUDED
+#ifndef YY_YY_D_DOCUMENTS_PROJECTS_JZERO_SRC_CH13_J0GRAM_TAB_H_INCLUDED
+# define YY_YY_D_DOCUMENTS_PROJECTS_JZERO_SRC_CH13_J0GRAM_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 1
@@ -92,11 +92,11 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 5 "/workspaces/jzero/src/ch13/j0gram.y"
+#line 5 "D:/documents/projects/jzero/src/ch13/j0gram.y"
 
   struct Tree* t;
 
-#line 100 "/workspaces/jzero/src/ch13/j0gram.tab.h"
+#line 100 "D:/documents/projects/jzero/src/ch13/j0gram.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -111,4 +111,4 @@ extern YYSTYPE yylval;
 int yyparse (void);
 
 
-#endif /* !YY_YY_WORKSPACES_JZERO_SRC_CH13_J0GRAM_TAB_H_INCLUDED  */
+#endif /* !YY_YY_D_DOCUMENTS_PROJECTS_JZERO_SRC_CH13_J0GRAM_TAB_H_INCLUDED  */

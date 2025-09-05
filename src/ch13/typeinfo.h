@@ -5,8 +5,6 @@
 #include <vector>
 #include "c.h"
 
-using namespace std;
-
 class SymTab;
 class Parameter;
 
@@ -98,8 +96,8 @@ public:
 
 class ArrayType : public TypeInfo {
 public:
-  shared_ptr<TypeInfo> elementType;
-  ArrayType(shared_ptr<TypeInfo> elementType);
+  std::shared_ptr<TypeInfo> elementType;
+  ArrayType(std::shared_ptr<TypeInfo> elementType);
   ArrayType(const ArrayType &ob);
   ~ArrayType();
   ArrayType *clone () { return new ArrayType(*this); }
@@ -108,9 +106,9 @@ public:
 
 class MethodType : public TypeInfo {
 public:
-  shared_ptr<TypeInfo> returnType;
-  vector<shared_ptr<TypeInfo>> *params = nullptr;
-  MethodType(shared_ptr<TypeInfo> returnType, vector<shared_ptr<TypeInfo>> *params);
+  std::shared_ptr<TypeInfo> returnType;
+  std::vector<std::shared_ptr<TypeInfo>> *params = nullptr;
+  MethodType(std::shared_ptr<TypeInfo> returnType, std::vector<std::shared_ptr<TypeInfo>> *params);
   MethodType(const MethodType &ob);
   ~MethodType();
   MethodType *clone () { return new MethodType(*this); }
@@ -139,8 +137,8 @@ public:
 class Parameter {
 public:
   const char *name;
-  shared_ptr<TypeInfo> paramType;
-  Parameter(const char *name, shared_ptr<TypeInfo> paramType);
+  std::shared_ptr<TypeInfo> paramType;
+  Parameter(const char *name, std::shared_ptr<TypeInfo> paramType);
   Parameter(const Parameter &ob);
   ~Parameter();
   Parameter *clone () { return new Parameter(*this); }

@@ -7,6 +7,8 @@
 #include "tree.h"
 #include "serial.h"
 
+using namespace std;
+
 const char *token_Name(int t);
 
 static char *escape(char *dest, const char *src);
@@ -629,7 +631,7 @@ bool Tree::checkKids(bool inCodeBlock) {
   return false;
 }
 
-shared_ptr<TypeInfo> Tree::checkTypes(shared_ptr<TypeInfo> op1, shared_ptr<TypeInfo> op2) {
+std::shared_ptr<TypeInfo> Tree::checkTypes(shared_ptr<TypeInfo> op1, shared_ptr<TypeInfo> op2) {
   const char *op = getOp();
   if (!strcmp("param", op) || !strcmp("return", op) || !strcmp("=", op) || !strcmp("+", op) || !strcmp("-", op)) {
     Tree *tk;

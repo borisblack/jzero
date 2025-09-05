@@ -1,7 +1,7 @@
 #include "byc.h"
 #include "string.h"
 
-map<int, string> Byc::ops;
+std::map<int, std::string> Byc::ops;
 bool Byc::isOpsInit = false;
 
 void Byc::initOps() {

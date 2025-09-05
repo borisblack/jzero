@@ -3,7 +3,7 @@
 #include <string.h>
 #include "typeinfo.h"
 
-ArrayType::ArrayType(shared_ptr<TypeInfo> elementType) : TypeInfo(ARRAY_TYPE) {
+ArrayType::ArrayType(std::shared_ptr<TypeInfo> elementType) : TypeInfo(ARRAY_TYPE) {
   this->elementType = elementType;
 }
 
@@ -20,7 +20,7 @@ const char *ArrayType::str() {
   return "array";
 }
 
-MethodType::MethodType(shared_ptr<TypeInfo> returnType, vector<shared_ptr<TypeInfo>> *params) : TypeInfo(METHOD_TYPE) {
+MethodType::MethodType(std::shared_ptr<TypeInfo> returnType, std::vector<std::shared_ptr<TypeInfo>> *params) : TypeInfo(METHOD_TYPE) {
   this->returnType = returnType;
   this->params = params;
 }
@@ -28,7 +28,7 @@ MethodType::MethodType(shared_ptr<TypeInfo> returnType, vector<shared_ptr<TypeIn
 MethodType::MethodType(const MethodType &ob) : TypeInfo(ob) {
   returnType = ob.returnType;
   if (ob.params) {
-    params = new vector<shared_ptr<TypeInfo>>();
+    params = new std::vector<std::shared_ptr<TypeInfo>>();
 
     if (ob.params->size() > 0)
       params->insert(params->end(), ob.params->begin(), ob.params->end());
@@ -113,7 +113,7 @@ ClassType::~ClassType() {
     free(constrs);
 }
 
-Parameter::Parameter(const char *name, shared_ptr<TypeInfo> paramType) {
+Parameter::Parameter(const char *name, std::shared_ptr<TypeInfo> paramType) {
   this->name = name;
   this->paramType = paramType;
 }
